@@ -1,16 +1,12 @@
 pipeline {
-    agent any
 
-    tools {
-        maven 'mymaven'
-        jdk 'jdk17'
-    }
+    agent any
 
     stages {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/<your-username>/java-ci-cd-demo.git'
+                git 'https://github.com/nameissriniavs/java-ci-cd-demo.git'
             }
         }
 
