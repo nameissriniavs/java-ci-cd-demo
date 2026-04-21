@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clean Workspace') {
             steps {
-                deleteDir()
+                cleanWs()
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
 
     post {
         always {
-            echo 'Pipeline completed'
+            cleanWs()
         }
     }
 }
