@@ -6,7 +6,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/nameissriniavs/java-ci-cd-demo.git'
+                git branch: 'main', url: 'https://github.com/nameissriniavs/java-ci-cd-demo.git'
             }
         }
 
