@@ -1,16 +1,16 @@
 pipeline {
-
     agent any
 
-    options {
-        skipDefaultCheckout(true)
+    tools {
+        jdk 'JDK11'        // Make sure this exists in Jenkins
+        maven 'Maven3'     // Configure in Global Tool Config
     }
 
     stages {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/nameissriniavs/java-ci-cd-demo.git'
+                git 'https://github.com/nameissriniavs/java-ci-cd-demo.git'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/*.war'
+                archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
             }
         }
     }
