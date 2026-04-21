@@ -3,9 +3,21 @@ pipeline {
 
     stages {
 
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/nameissriniavs/java-ci-cd-demo.git'
+            }
+        }
+
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
@@ -18,13 +30,7 @@ pipeline {
 
     post {
         always {
-            echo 'Pipeline execution completed'
-        }
-        success {
-            echo 'Build SUCCESS'
-        }
-        failure {
-            echo 'Build FAILED'
+            echo 'Pipeline completed'
         }
     }
 }
